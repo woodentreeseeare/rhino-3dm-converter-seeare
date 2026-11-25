@@ -95,3 +95,10 @@ convertBtn.addEventListener('click', async () => {
     convertBtn.disabled = false;
   }
 });
+
+// Offline support: sw.js caches the app files. Registration needs HTTPS (or localhost).
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch((err) => console.warn('Service worker not registered:', err));
+  });
+}
