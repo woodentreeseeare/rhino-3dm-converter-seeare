@@ -6,7 +6,7 @@ The build plan is in [PLAN.md](PLAN.md).
 
 ## Status
 
-Phases 1–4 of `PLAN.md` are implemented. See the status note in `PLAN.md`: one Content-Security-Policy decision is still open before the app works in a browser.
+Phases 1–4 of `PLAN.md` are implemented and pass the browser tests. Phase 5 (offline install, GitHub Pages, iPhone testing) is next.
 
 ## Run locally
 

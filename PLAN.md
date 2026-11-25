@@ -30,7 +30,7 @@ This plan splits the work into separate Claude Code sessions to save usage. Each
 
 ## Status (2026-11-25)
 
-Phases 1–4 are implemented. **Blocker:** rhino3dm.js creates functions at runtime (`new Function`, in its embind layer). The current Content-Security-Policy rule forbids that, so building the `.3dm` file fails in the browser. Every reader passes the tests when the policy is bypassed for testing. Allowing `'unsafe-eval'` in `script-src` is a decision for the owner, because `CLAUDE.md` forbids loosening the policy.
+Phases 1–4 are implemented, and all browser tests pass with the real Content-Security-Policy rule. The owner approved one exception: `'unsafe-eval'` in `script-src`, because rhino3dm.js creates functions at runtime. Next: Phase 5.
 
 ---
 
