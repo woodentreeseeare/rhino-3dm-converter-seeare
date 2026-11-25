@@ -28,6 +28,12 @@ This plan splits the work into separate Claude Code sessions to save usage. Each
 
 ---
 
+## Status (2026-11-25)
+
+Phases 1–4 are implemented, and all browser tests pass with the real Content-Security-Policy rule. The owner approved one exception: `'unsafe-eval'` in `script-src`, because rhino3dm.js creates functions at runtime. Phase 5 is implemented (manifest, service worker, Pages workflow); its remaining step is the real-iPhone check.
+
+---
+
 ## Phase 1: Targeted OpenSKP review (level 2A)
 
 - **Model:** Opus. **Estimate:** ~20–40 min, ~50k–100k tokens.
@@ -82,11 +88,11 @@ This plan splits the work into separate Claude Code sessions to save usage. Each
 
 | Phase | Date | Model | Usage before → after | Notes |
 |---|---|---|---|---|
-| 1 | | Opus | | |
+| 1 | 2026-11-25 | Opus | not recorded | Phases 1–4 done in one session at the user's request. See docs/audit-openskp.md. |
 | 2 | | Sonnet | | |
 | 3 | | Sonnet | | |
 | 4 | | Sonnet | | |
-| 5 | | Sonnet | | |
+| 5 | 2026-11-25 | Sonnet | see /usage | Manifest, service worker, Pages workflow, offline tests. |
 
 ## Later (out of scope for now)
 

@@ -1,0 +1,22 @@
+{
+  "name": "vendor-tools",
+  "private": true,
+  "description": "Pinned library versions. Used only by vendor.sh to refresh vendor/. Not part of the app.",
+  "dependencies": {
+    "earcut": "3.2.4",
+    "fflate": "0.8.3",
+    "flatbuffers": "25.9.23",
+    "occt-import-js": "0.0.23",
+    "openskp": "1.7.0",
+    "rhino3dm": "8.35.0",
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  },
+  "overrides": {
+    "earcut": "3.2.4",
+    "fflate": "0.8.3",
+    "flatbuffers": "25.9.23"
+  }
+}
