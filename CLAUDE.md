@@ -3,6 +3,7 @@
 A web app that runs only in Safari on an iPhone and converts STL, OBJ, PLY, glTF, 3MF, FBX, STEP, IGES, BREP and SKP files to `.3dm`.
 
 - The build plan and phases are in `PLAN.md`. Work only on the phase named in the prompt.
+- Before doing anything that departs from `PLAN.md` or this file, including where or how work runs, stop and ask. A request does not override these rules unless it says so explicitly.
 - The app is static files only: `index.html`, `app/` and `vendor/`. It has no app build step and no server.
 - `vendor/` is regenerated only by `tools/vendor.sh`, and only when upgrading a pinned library. Review the new version first.
 - Load every library from `vendor/`, never from a CDN at runtime.

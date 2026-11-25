@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Project rule check: before acting, compare this request with PLAN.md and CLAUDE.md (including where work runs: one phase per new session). If the request conflicts with or is not covered by them, ask the user before proceeding. A request does not override these rules unless it says so explicitly.\"}}'"
+          }
+        ]
+      }
+    ]
+  }
+}
