@@ -28,6 +28,12 @@ This plan splits the work into separate Claude Code sessions to save usage. Each
 
 ---
 
+## Status (2026-11-25)
+
+Phases 1–4 are implemented. **Blocker:** rhino3dm.js creates functions at runtime (`new Function`, in its embind layer). The current Content-Security-Policy rule forbids that, so building the `.3dm` file fails in the browser. Every reader passes the tests when the policy is bypassed for testing. Allowing `'unsafe-eval'` in `script-src` is a decision for the owner, because `CLAUDE.md` forbids loosening the policy.
+
+---
+
 ## Phase 1: Targeted OpenSKP review (level 2A)
 
 - **Model:** Opus. **Estimate:** ~20–40 min, ~50k–100k tokens.
@@ -82,7 +88,7 @@ This plan splits the work into separate Claude Code sessions to save usage. Each
 
 | Phase | Date | Model | Usage before → after | Notes |
 |---|---|---|---|---|
-| 1 | | Opus | | |
+| 1 | 2026-11-25 | Opus | not recorded | Phases 1–4 done in one session at the user's request. See docs/audit-openskp.md. |
 | 2 | | Sonnet | | |
 | 3 | | Sonnet | | |
 | 4 | | Sonnet | | |

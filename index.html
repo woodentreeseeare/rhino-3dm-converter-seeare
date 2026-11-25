@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; img-src 'self' data: blob:; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light dark">
+  <title>3DM Converter</title>
+  <link rel="stylesheet" href="app/style.css">
+  <script type="module" src="app/main.js"></script>
+</head>
+<body>
+  <main>
+    <h1>3DM Converter</h1>
+    <p class="lede">Converts 3D files to Rhino <code>.3dm</code> on this device. Nothing is uploaded.</p>
+
+    <label class="picker" for="file">
+      <span class="picker-title">Choose a file</span>
+      <span class="picker-sub">STL, OBJ, PLY, glTF/GLB, 3MF, FBX, STEP, IGES, BREP, SKP</span>
+    </label>
+    <input id="file" type="file" accept=".stl,.obj,.ply,.glb,.gltf,.3mf,.fbx,.step,.stp,.iges,.igs,.brep,.brp,.skp">
+
+    <section id="options" hidden>
+      <p id="file-info" class="file-info"></p>
+      <div class="row" id="unit-row">
+        <label for="unit">Source units</label>
+        <select id="unit">
+          <option value="mm">Millimeters</option>
+          <option value="cm">Centimeters</option>
+          <option value="m">Meters</option>
+          <option value="in">Inches</option>
+          <option value="ft">Feet</option>
+        </select>
+      </div>
+      <div class="row" id="axis-row">
+        <label for="yup">Y-up model (rotate to Rhino Z-up)</label>
+        <input id="yup" type="checkbox">
+      </div>
+      <button id="convert" type="button">Convert to .3dm</button>
+    </section>
+
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <p id="note" class="note" hidden></p>
+    <a id="download" class="download" hidden>Save .3dm</a>
+  </main>
+  <footer>
+    <p>Open results in Rhino or iRhino 3D. <a href="vendor/VERSIONS.md">Library versions and licenses</a></p>
+  </footer>
+</body>
+</html>
