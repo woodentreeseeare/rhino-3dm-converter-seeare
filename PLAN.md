@@ -32,6 +32,8 @@ This plan splits the work into separate Claude Code sessions to save usage. Each
 
 Phases 1–4 are implemented, and all browser tests pass with the real Content-Security-Policy rule. The owner approved one exception: `'unsafe-eval'` in `script-src`, because rhino3dm.js creates functions at runtime. Phase 5 is implemented (manifest, service worker, Pages workflow); its remaining step is the real-iPhone check.
 
+C4D (2026-11-26): Phases 6 and 7 are planned in `docs/c4d-plan.md`. The implementation path (adapt rindr, or a clean-room reader) is chosen after Phase 6.
+
 ---
 
 ## Phase 1: Targeted OpenSKP review (level 2A)
@@ -82,6 +84,23 @@ Phases 1–4 are implemented, and all browser tests pass with the real Content-S
   > Read `PLAN.md` (Phase 5 only). Add a web app manifest and a service worker so the app installs on the Home Screen and works offline. Test in headless Chromium with iPhone emulation, using every file in `samples/`. Check that the page fits the screen at phone width and has no horizontal scrolling. Set up GitHub Pages deployment.
 - **Done when:** the deployed URL works on a real iPhone, and the output opens in iRhino 3D.
 
+## Phase 6: C4D groundwork (path-neutral)
+
+- **Model:** Sonnet. **Estimate:** ~1–2 hrs.
+- **Requirement:** The owner has put `.c4d` reference files and matching OBJ exports in `samples/third-party/c4d/` (see `docs/c4d-plan.md`, "Prerequisite").
+- **Prompt to paste:**
+  > Read `PLAN.md` (Phase 6 only), `CLAUDE.md` and `docs/c4d-plan.md`. Do not read `docs/c4d-rindr-analysis.md`, `docs/c4d-sweep.md` or any rindr source, so a clean-room path stays open. Do steps 1–5 and 7 of Phase 6 in `docs/c4d-plan.md`: the corpus manifest, `tests/c4d-compare.mjs`, `tests/c4d-fuzz.mjs` and the reader contract. Do not change `vendor/`, `index.html` or `sw.js`. Skip step 6 unless the owner says otherwise. Write `docs/c4d-results.md` and commit.
+- **Done when:** the comparison and fuzz tools run on the corpus, `docs/c4d-results.md` is committed, and the owner has chosen path A or path B.
+
+## Phase 7: C4D reader (path chosen after Phase 6)
+
+- **Model:** Opus (path A includes a security review; path B is format analysis). **Estimate:** path A ~2–3 hrs; path B several sessions.
+- **Prompt to paste (path A):**
+  > Read `PLAN.md` (Phase 7 only), `CLAUDE.md`, `docs/c4d-plan.md`, `docs/c4d-rindr-analysis.md` and `docs/c4d-results.md`. Follow Phase 7 path A in `docs/c4d-plan.md`. Vendor rindr's `c4d-parse.js` at the pinned commit through `tools/vendor.sh` with a hash check and its licence. Review it like `docs/audit-openskp.md`, fix defects D1–D7 in a separate marked file, and add the mapping layer in `app/c4d/`. Pass `tests/c4d-compare.mjs`, `tests/c4d-fuzz.mjs` and both existing test suites. Commit.
+- **Prompt to paste (path B):**
+  > Read `PLAN.md` (Phase 7 only), `CLAUDE.md`, `docs/c4d-plan.md` and `docs/c4d-results.md`. Do not read `docs/c4d-rindr-analysis.md`, `docs/c4d-sweep.md` or any rindr source, and do not search for it. Follow Phase 7 path B in `docs/c4d-plan.md`: build `app/c4d/reader.js` from the public facts and the sample files only, and record each finding in `docs/c4d-format.md`. Pass `tests/c4d-compare.mjs`, `tests/c4d-fuzz.mjs` and both existing test suites. Commit.
+- **Done when:** every reference file passes the comparison, the fuzz harness passes, and `.c4d` files convert in the browser tests.
+
 ---
 
 ## Usage log
@@ -93,6 +112,8 @@ Phases 1–4 are implemented, and all browser tests pass with the real Content-S
 | 3 | | Sonnet | | |
 | 4 | | Sonnet | | |
 | 5 | 2026-11-25 | Sonnet | see /usage | Manifest, service worker, Pages workflow, offline tests. |
+| 6 | | Sonnet | | C4D groundwork. |
+| 7 | | Opus | | C4D reader, path A or B. |
 
 ## Later (out of scope for now)
 
