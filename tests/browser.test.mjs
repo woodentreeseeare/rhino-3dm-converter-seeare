@@ -47,6 +47,9 @@ for (const w of [320, 375, 390, 430]) {
 }
 await page.setViewportSize(devices['iPhone 13'].viewport);
 
+// iOS greys out files (such as .skp) that are not in an accept list, so the picker must have none.
+if (await page.getAttribute('#file', 'accept') !== null) { console.log('#file must not have an accept attribute (iOS greys out .skp)'); failed++; }
+
 // Service worker registers, activates and caches every file it lists.
 const swState = await page.evaluate(async () => {
   const reg = await navigator.serviceWorker.ready;
